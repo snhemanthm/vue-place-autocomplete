@@ -25,6 +25,7 @@ import FormControl from 'vue-interface/src/Mixins/FormControl';
 import FormGroup from 'vue-interface/src/Components/FormGroup';
 import InputField from 'vue-interface/src/Components/InputField';
 import ActivityIndicator from 'vue-interface/src/Components/ActivityIndicator';
+import debounce from "debounce";
 
 const KEYCODE = {
     ESC: 27,
@@ -113,7 +114,7 @@ export default {
         types: {
             type: [Boolean, Array],
             default: false
-        }
+        },
 
     },
 
@@ -144,6 +145,17 @@ export default {
                 this.$emit('autocomplete-select', place, response[0]);
             });
         },
+
+        searchDebounce: debounce(function() {
+            this.search().then(response => {
+                this.predictions = response;
+                this.showPredictions = true;
+            }, error => {
+                if (error) {
+                    this.predictions = false;
+                }
+            });
+        }, 200),
 
         search() {
             return new Promise((resolve, reject) => {
@@ -231,14 +243,7 @@ export default {
                 return;
             }
 
-            this.search().then(response => {
-                this.predictions = response;
-                this.showPredictions = true;
-            }, error => {
-                if (error) {
-                    this.predictions = false;
-                }
-            });
+            this.searchDebounce();
         },
 
         onFocus(event) {
