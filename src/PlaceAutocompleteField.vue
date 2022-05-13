@@ -1,6 +1,6 @@
 <template>
     <div class="autocomplete-field" @keydown="onKeydown" @keyup="onKeyup">
-        <input
+        <d-input
             v-model="query"
             v-bind-events
             v-bind="$attrs"

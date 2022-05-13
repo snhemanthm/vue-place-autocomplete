@@ -17,6 +17,7 @@
   },
   "dependencies": {
     "debounce": "^1.2.0",
+    "shards-vue": "^1.0.7",
     "vue": "^2.6.11",
     "vue-interface": "^0.4.52"
   },
