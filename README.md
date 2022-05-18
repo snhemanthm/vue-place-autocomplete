@@ -1,5 +1,7 @@
 # Google Place Autocomplete
 
+From https://github.com/actengage/vue-place-autocomplete with patches from https://github.com/CSalih/vue-place-autocomplete
+
 This Vue component incorporates full support the Google Places and Geocoder API's a single input field.
 The goal is provide the most native and seamlessly integrated solution possible.
 
